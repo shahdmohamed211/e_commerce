@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import ProductCard from '@/components/ProductCard';
+import StarRating from '@/components/StarRating';
 import { notFound } from 'next/navigation';
 import AddToCartButton from './AddToCartButton';
 import ImageGallery from './ImageGallery';
@@ -35,7 +36,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
             <main className="flex-1 max-w-container mx-auto px-[var(--container-padding)] py-12 w-full">
                 <Breadcrumb items={breadcrumbItems} />
 
-                <div className="grid grid-cols-2 gap-12 mt-8 lg:grid-cols-1 md:gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12 items-start">
                     {/* Image Gallery */}
                     <ImageGallery
                         images={product.images || []}
@@ -44,30 +45,29 @@ export default async function ProductDetailsPage({ params }: PageProps) {
                     />
 
                     {/* Product Info */}
-                    <div className="flex flex-col gap-8">
-                        <div>
-                            <span className="text-pale-sky font-semibold text-sm uppercase tracking-wider mb-2 block">{product.brand?.name}</span>
-                            <h1 className="text-[40px] font-bold leading-tight text-cod-gray md:text-[32px]">{product.title}</h1>
+                    <div className="flex flex-col items-start gap-1 pt-4">
+                        {/* Brand */}
+                        <div className="font-bold text-[13px] text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-0">{product.brand?.name}</div>
+
+                        {/* Title */}
+                        <h1 className="text-[32px] font-bold leading-tight text-primary m-0">{product.title}</h1>
+
+                        <div className="flex items-center gap-2 mt-1">
+                            <StarRating rating={product.ratingsAverage} size={18} />
+                            <span className="text-primary font-bold text-[14px] ml-1">{product.ratingsAverage}</span>
+                            <span className="text-gray-500 dark:text-gray-400 text-[13px] font-medium">({product.ratingsQuantity} reviews)</span>
                         </div>
 
-                        <div className="flex items-center gap-4">
-                            <div className="flex items-center bg-supernova/10 px-3 py-1 rounded-lg">
-                                <span className="text-supernova font-bold mr-1">★</span>
-                                <span className="text-cod-gray font-bold">{product.ratingsAverage}</span>
-                            </div>
-                            <span className="text-pale-sky text-sm font-medium">({product.ratingsQuantity} reviews)</span>
+                        {/* Price */}
+                        <div className="text-[28px] font-bold text-primary mt-4">EGP {product.price.toLocaleString()}</div>
+
+                        {/* Description */}
+                        <div className="mt-4">
+                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px] max-w-xl">{product.description}</p>
                         </div>
 
-                        <div className="text-[32px] font-bold text-cod-gray">EGP {product.price.toLocaleString()}</div>
-
-                        <div className="h-[1px] bg-subtle w-full"></div>
-
-                        <div className="flex flex-col gap-4">
-                            <h3 className="text-base font-bold text-cod-gray uppercase tracking-wide">Description</h3>
-                            <p className="text-river-bed leading-relaxed text-[15px]">{product.description}</p>
-                        </div>
-
-                        <div className="flex gap-4 mt-4 sm:flex-col">
+                        {/* Actions */}
+                        <div className="flex items-center gap-4 mt-8 w-full">
                             <AddToCartButton productId={product._id} />
                             <WishlistButton productId={product._id} />
                         </div>
@@ -76,7 +76,7 @@ export default async function ProductDetailsPage({ params }: PageProps) {
 
                 {/* Related Products Section */}
                 {filteredRelated.length > 0 && (
-                    <section className="mt-24 pt-12 border-t border-subtle">
+                    <section className="mt-16 pt-10 border-t border-subtle">
                         <h2 className="text-[28px] font-bold mb-10 text-cod-gray">Related Products</h2>
                         <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
                             {filteredRelated.map((p: Product) => (

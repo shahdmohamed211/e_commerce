@@ -25,14 +25,13 @@ export default function WishlistButton({ productId }: WishlistButtonProps) {
 
     return (
         <button
-            className={`flex items-center justify-center gap-3 py-4 px-8 rounded-xl font-bold text-base cursor-pointer transition-all duration-200 border-2 sm:w-full ${inWishlist ? 'bg-red-50 border-red-500 text-red-500' : 'bg-transparent border-default text-pale-sky hover:border-cod-gray hover:text-cod-gray'}`}
+            className={`flex-none w-14 h-14 flex items-center justify-center rounded-xl cursor-pointer transition-all duration-200 border-2 ${inWishlist ? 'bg-red-500/10 border-red-500 text-red-500' : 'bg-transparent border-black text-black hover:opacity-70 dark:bg-transparent dark:border-[#FFFFFF] dark:text-[#FFFFFF] dark:hover:opacity-100'}`}
             onClick={handleClick}
             aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
         >
             <svg width="24" height="24" viewBox="0 0 24 24" fill={inWishlist ? "currentColor" : "none"} xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.84 4.61C20.3292 4.09924 19.7228 3.69397 19.0554 3.41729C18.388 3.14061 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.512 3.14061 14.8446 3.41729C14.1772 3.69397 13.5708 4.09924 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.57831 8.50903 2.99871 7.05 2.99871C5.59096 2.99871 4.19169 3.57831 3.16 4.61C2.1283 5.64169 1.54871 7.04096 1.54871 8.5C1.54871 9.95903 2.1283 11.3583 3.16 12.39L4.22 13.45L12 21.23L19.78 13.45L20.84 12.39C21.3508 11.8792 21.756 11.2728 22.0327 10.6054C22.3094 9.93801 22.4518 9.22252 22.4518 8.5C22.4518 7.77747 22.3094 7.06198 22.0327 6.39459C21.756 5.72721 21.3508 5.12079 20.84 4.61Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span>{inWishlist ? 'In Wishlist' : 'Add to Wishlist'}</span>
         </button>
     );
 }

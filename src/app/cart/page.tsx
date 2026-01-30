@@ -82,10 +82,10 @@ export default function CartPage() {
         <div className="min-h-screen bg-primary text-primary flex flex-col font-inter">
             <Navbar />
 
-            <main className="flex-1 w-full max-w-[1440px] mx-auto px-10 py-16">
+            <main className="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 py-8 md:py-16">
                 {/* Header Section - Exactly as screenshot */}
                 <div className="flex flex-col gap-1 mb-14">
-                    <h1 className="text-[44px] font-bold tracking-tight m-0 leading-tight">Shopping Cart</h1>
+                    <h1 className="text-[32px] md:text-[44px] font-bold tracking-tight m-0 leading-tight">Shopping Cart</h1>
                     {cart && <p className="text-[16px] text-secondary opacity-60 font-medium m-0">{cart.products.length} items in your cart</p>}
                 </div>
 
@@ -96,8 +96,8 @@ export default function CartPage() {
                         {/* 1. Left Column: Cart Items List */}
                         <div className="w-full lg:flex-[2] flex flex-col gap-4">
                             {cart.products.map((item) => (
-                                <div key={item._id} className="flex flex-row justify-between items-center p-8 bg-secondary border border-subtle rounded-[24px]">
-                                    <div className="flex flex-row items-center gap-8">
+                                <div key={item._id} className="flex flex-col md:flex-row justify-between items-start md:items-center p-4 md:p-8 bg-secondary border border-subtle rounded-[24px] gap-6 md:gap-0">
+                                    <div className="flex flex-row items-center gap-4 md:gap-8 w-full md:w-auto">
                                         {/* Product Image in box */}
                                         <div className="w-28 h-28 bg-white rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center p-4">
                                             <img
@@ -131,8 +131,8 @@ export default function CartPage() {
                                         </div>
                                     </div>
 
-                                    {/* Action & Price Column - Exactly matching screenshot alignment */}
-                                    <div className="flex flex-col items-end justify-between self-stretch py-1">
+                                    {/* Action & Price Column - Responsive alignment */}
+                                    <div className="flex flex-row md:flex-col items-center md:items-end justify-between self-stretch w-full md:w-auto md:py-1 pl-4 md:pl-0 border-t md:border-none border-subtle/10 pt-4 md:pt-0 mt-2 md:mt-0">
                                         <div className="text-right">
                                             <div className="font-bold text-[22px] tracking-tight whitespace-nowrap">
                                                 <span className="mr-1.5">EGP</span>
@@ -153,7 +153,7 @@ export default function CartPage() {
 
                         {/* 2. Right Column: Summary Card */}
                         <div className="w-full lg:flex-1 lg:min-w-[420px]">
-                            <div className="bg-secondary border border-subtle p-10 py-12 rounded-[32px] flex flex-col gap-10 sticky top-32">
+                            <div className="bg-secondary border border-subtle p-6 md:p-10 md:py-12 rounded-[32px] flex flex-col gap-10 sticky top-32">
                                 <h2 className="font-bold text-[24px] m-0 tracking-tight text-primary">Order Summary</h2>
 
                                 <div className="flex flex-col gap-5">

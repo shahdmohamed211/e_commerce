@@ -35,7 +35,7 @@ export default function AddToCartButton({ productId }: { productId: string }) {
     return (
         <button
             onClick={handleAddToCart}
-            className={`flex-1 py-4 px-8 rounded-xl font-bold text-base cursor-pointer transition-all duration-200 border-none sm:w-full ${added ? 'bg-green-500 text-white' : 'bg-black text-white hover:opacity-90'} disabled:opacity-50 disabled:cursor-not-allowed`}
+            className={`flex-1 py-4 px-8 rounded-xl font-bold text-base cursor-pointer transition-all duration-200 border-none sm:w-full ${added ? 'bg-[#22c55e] text-white' : 'bg-[#000000] text-white hover:opacity-90 dark:bg-[#ffffff] dark:text-[#000000] dark:hover:opacity-100'} disabled:opacity-50 disabled:cursor-not-allowed`}
             disabled={loading}
         >
             {loading ? 'Adding...' : added ? 'Added to Cart ✓' : 'Add To Cart'}

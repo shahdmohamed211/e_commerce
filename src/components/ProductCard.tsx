@@ -6,6 +6,7 @@ import { addToCart } from '@/lib/api';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import StarRating from './StarRating';
 
 interface ProductCardProps {
     id: string;
@@ -93,14 +94,8 @@ export default function ProductCard({
                 </div>
 
                 <div className="flex items-center gap-2 mt-1">
-                    <div className="flex text-supernova">
-                        {[...Array(5)].map((_, i) => (
-                            <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={i < Math.floor(rating) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="0">
-                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
-                            </svg>
-                        ))}
-                    </div>
-                    <span className="text-[14px] text-pale-sky">({reviews})</span>
+                    <StarRating rating={rating} size={14} />
+                    <span className="text-[12px] text-pale-sky">({reviews})</span>
                 </div>
 
                 <div className="mt-auto pt-4 flex flex-col gap-3">

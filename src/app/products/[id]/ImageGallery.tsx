@@ -15,12 +15,12 @@ export default function ImageGallery({ images, mainImage, title }: ImageGalleryP
     return (
         <div className="flex flex-col gap-5">
             {/* Main Image */}
-            <div className="w-full aspect-square bg-white rounded-3xl overflow-hidden border border-subtle">
+            <div className="w-full aspect-[4/3] bg-white rounded-3xl overflow-hidden border border-subtle flex items-center justify-center p-8">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src={selectedImage}
                     alt={title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-contain transition-transform duration-500 hover:scale-110"
                 />
             </div>
 

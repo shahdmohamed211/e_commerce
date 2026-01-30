@@ -31,9 +31,22 @@ export default function Navbar() {
     return (
         <header className="w-full">
             <nav className="sticky top-0 z-[100] w-full h-20 bg-primary/95 backdrop-blur-md text-primary border-b border-subtle flex items-center justify-center">
-                <div className="grid grid-cols-3 items-center w-full max-w-container px-12 h-full md:px-6">
-                    {/* Left: Logo Group */}
-                    <div className="flex items-center gap-6">
+                <div className="flex md:grid md:grid-cols-3 justify-between items-center w-full max-w-container px-6 md:px-6 h-full">
+                    {/* Left: Logo Group & Mobile Menu Toggle */}
+                    <div className="flex items-center gap-4 md:gap-6">
+                        {/* Mobile Menu Button */}
+                        <button
+                            className="md:hidden flex items-center justify-center p-2 -ml-2 text-primary hover:bg-secondary rounded-full transition-all"
+                            onClick={toggleMenu}
+                            aria-label="Open Menu"
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
+                        </button>
+
                         <Link href="/" className="flex items-center gap-3 no-underline cursor-pointer group">
                             <div className="w-10 h-10 bg-black text-white dark:bg-white dark:text-black rounded-xl flex items-center justify-center font-bold text-xl font-inter transition-transform group-hover:rotate-6 shadow-lg shadow-black/10">S</div>
                             <span className="font-bold text-[22px] text-primary tracking-tight">ShopMart</span>

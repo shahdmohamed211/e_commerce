@@ -9,13 +9,13 @@ export default function Footer() {
 
     useEffect(() => {
         getCategories().then(res => {
-            if (res) setCategories(res.slice(0, 5));
+            if (res) setCategories(res.slice(0, 7));
         });
     }, []);
 
     return (
         <footer className="bg-primary text-primary py-16 border-t border-subtle w-full font-inter">
-            <div className="max-w-[1440px] mx-auto px-10">
+            <div className="max-w-[1440px] mx-auto px-6 md:px-10">
                 {/* Flex Layout for Desktop (Same Row), Grid/Stack for smaller screens */}
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-8">
 
@@ -49,12 +49,16 @@ export default function Footer() {
                     <div className="flex flex-col gap-6 lg:flex-1">
                         <h3 className="font-bold text-[14px] text-primary uppercase tracking-wider m-0">SHOP</h3>
                         <div className="flex flex-col gap-3">
-                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">Music</Link>
-                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">Men's Fashion</Link>
-                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">Women's Fashion</Link>
-                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">SuperMarket</Link>
-                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">Baby & Toys</Link>
-                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">Deals</Link>
+                            <Link href="/products" className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100">All Products</Link>
+                            {categories.map((cat) => (
+                                <Link
+                                    key={cat._id}
+                                    href={`/categories/${cat._id}`}
+                                    className="text-[14px] text-secondary no-underline hover:text-primary transition-colors opacity-80 hover:opacity-100"
+                                >
+                                    {cat.name}
+                                </Link>
+                            ))}
                         </div>
                     </div>
 
