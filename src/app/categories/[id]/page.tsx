@@ -3,7 +3,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import ProductCard from '@/components/ProductCard';
-import styles from './page.module.css';
 import Link from 'next/link';
 
 interface PageProps {
@@ -35,18 +34,18 @@ export default async function CategoryDetailsPage({ params, searchParams }: Page
     return (
         <>
             <Navbar />
-            <div className={styles.container}>
+            <div className="max-w-container mx-auto px-[var(--container-padding)] py-12">
                 <Breadcrumb items={breadcrumbItems} />
 
-                <div className={styles.categoryHeader}>
-                    <h1 className={styles.title}>{categoryName}</h1>
+                <div className="flex flex-col gap-6 mb-10">
+                    <h1 className="text-[32px] font-bold">{categoryName}</h1>
                     {subCategoriesData.data?.length > 0 && (
-                        <div className={styles.subCatWrapper}>
-                            <span>Subcategories:</span>
-                            <div className={styles.subCatList}>
+                        <div className="flex items-center gap-4 border-b border-subtle pb-4 overflow-x-auto sm:flex-col sm:items-start sm:gap-4 sm:border-none">
+                            <span className="text-sm font-semibold text-pale-sky whitespace-nowrap">Subcategories:</span>
+                            <div className="flex gap-2.5">
                                 <Link
                                     href={`/categories/${id}`}
-                                    className={`${styles.subCatLink} ${!subcategory ? styles.activeSubCat : ''}`}
+                                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 no-underline whitespace-nowrap ${!subcategory ? 'bg-black text-white shadow-sm' : 'bg-secondary text-primary hover:bg-athens-gray'}`}
                                 >
                                     All
                                 </Link>
@@ -54,7 +53,7 @@ export default async function CategoryDetailsPage({ params, searchParams }: Page
                                     <Link
                                         key={sub._id}
                                         href={`/categories/${id}?subcategory=${sub._id}`}
-                                        className={`${styles.subCatLink} ${subcategory === sub._id ? styles.activeSubCat : ''}`}
+                                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 no-underline whitespace-nowrap ${subcategory === sub._id ? 'bg-black text-white shadow-sm' : 'bg-secondary text-primary hover:bg-athens-gray'}`}
                                     >
                                         {sub.name}
                                     </Link>
@@ -65,7 +64,7 @@ export default async function CategoryDetailsPage({ params, searchParams }: Page
                 </div>
 
                 {products.length > 0 ? (
-                    <div className={styles.grid}>
+                    <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
                         {products.map((product: Product) => (
                             <ProductCard
                                 key={product._id}
@@ -81,7 +80,9 @@ export default async function CategoryDetailsPage({ params, searchParams }: Page
                         ))}
                     </div>
                 ) : (
-                    <p className={styles.noProducts}>No products found in this selection.</p>
+                    <div className="flex flex-col items-center justify-center py-20 text-center text-pale-sky">
+                        <p className="text-lg">No products found in this selection.</p>
+                    </div>
                 )}
             </div>
             <Footer />

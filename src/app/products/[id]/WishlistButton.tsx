@@ -3,7 +3,6 @@
 import { useAuth } from '@/context/AuthContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useRouter } from 'next/navigation';
-import styles from './page.module.css';
 
 interface WishlistButtonProps {
     productId: string;
@@ -26,7 +25,7 @@ export default function WishlistButton({ productId }: WishlistButtonProps) {
 
     return (
         <button
-            className={`${styles.wishlistBtn} ${inWishlist ? styles.wishlistActive : ''}`}
+            className={`flex items-center justify-center gap-3 py-4 px-8 rounded-xl font-bold text-base cursor-pointer transition-all duration-200 border-2 sm:w-full ${inWishlist ? 'bg-red-50 border-red-500 text-red-500' : 'bg-transparent border-default text-pale-sky hover:border-cod-gray hover:text-cod-gray'}`}
             onClick={handleClick}
             aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
         >

@@ -6,7 +6,6 @@ import { createOrder, createCheckoutSession, getCart, getUserAddresses } from '@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
-import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 
 export default function CheckoutPage() {
@@ -102,18 +101,18 @@ export default function CheckoutPage() {
     ];
 
     return (
-        <>
+        <div className="min-h-screen flex flex-col">
             <Navbar />
-            <div className="container">
+            <main className="flex-1 max-w-container mx-auto px-[var(--container-padding)] py-12 w-full">
                 <Breadcrumb items={breadcrumbItems} />
 
-                <div className={styles.checkoutContainer}>
-                    <h1 className={styles.title}>Checkout</h1>
+                <div className="max-w-[800px] mx-auto">
+                    <h1 className="text-[32px] font-bold mb-8 text-cod-gray">Checkout</h1>
 
                     {addresses.length > 0 && (
-                        <div className={styles.inputGroup} style={{ marginBottom: '24px' }}>
-                            <label className={styles.label}>Select Saved Address</label>
-                            <select className={styles.input} onChange={handleSelectAddress}>
+                        <div className="flex flex-col gap-2 mb-8">
+                            <label className="text-sm font-semibold text-cod-gray">Select Saved Address</label>
+                            <select className="w-full p-4 bg-white border border-default rounded-xl transition-all duration-200 focus:outline-none focus:border-cod-gray cursor-pointer" onChange={handleSelectAddress}>
                                 <option value="">-- Choose an address --</option>
                                 {addresses.map(a => (
                                     <option key={a._id} value={a._id}>{a.name} ({a.city})</option>
@@ -122,12 +121,12 @@ export default function CheckoutPage() {
                         </div>
                     )}
 
-                    <form onSubmit={handleCashPayment} className={styles.form}>
-                        <div className={styles.inputGroup}>
-                            <label className={styles.label}>Address Details</label>
+                    <form onSubmit={handleCashPayment} className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-2">
+                            <label className="text-sm font-semibold text-cod-gray">Address Details</label>
                             <input
                                 type="text"
-                                className={styles.input}
+                                className="w-full p-4 bg-white border border-default rounded-xl transition-all duration-200 focus:outline-none focus:border-cod-gray placeholder:text-pale-sky"
                                 value={details}
                                 onChange={(e) => setDetails(e.target.value)}
                                 placeholder="Street address, apartment, etc."
@@ -135,11 +134,11 @@ export default function CheckoutPage() {
                             />
                         </div>
 
-                        <div className={styles.inputGroup}>
-                            <label className={styles.label}>Phone Number</label>
+                        <div className="flex flex-col gap-2">
+                            <label className="text-sm font-semibold text-cod-gray">Phone Number</label>
                             <input
                                 type="tel"
-                                className={styles.input}
+                                className="w-full p-4 bg-white border border-default rounded-xl transition-all duration-200 focus:outline-none focus:border-cod-gray placeholder:text-pale-sky"
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                                 placeholder="Your phone number"
@@ -147,11 +146,11 @@ export default function CheckoutPage() {
                             />
                         </div>
 
-                        <div className={styles.inputGroup}>
-                            <label className={styles.label}>City</label>
+                        <div className="flex flex-col gap-2">
+                            <label className="text-sm font-semibold text-cod-gray">City</label>
                             <input
                                 type="text"
-                                className={styles.input}
+                                className="w-full p-4 bg-white border border-default rounded-xl transition-all duration-200 focus:outline-none focus:border-cod-gray placeholder:text-pale-sky"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
                                 placeholder="Your city"
@@ -159,15 +158,15 @@ export default function CheckoutPage() {
                             />
                         </div>
 
-                        <div className={styles.paymentOptions}>
-                            <p className={styles.paymentLabel}>Select Payment Method</p>
+                        <div className="mt-4 pt-8 border-t border-subtle flex flex-col gap-6">
+                            <p className="text-lg font-bold text-cod-gray">Select Payment Method</p>
 
                             <button
                                 type="submit"
-                                className={styles.cashBtn}
+                                className="flex items-center justify-center gap-3 w-full py-4 px-6 bg-transparent text-cod-gray border-2 border-cod-gray rounded-xl font-bold text-base cursor-pointer transition-all duration-200 hover:bg-cod-gray hover:text-white disabled:opacity-50 disabled:cursor-not-allowed group"
                                 disabled={loading || !isFormValid}
                             >
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="group-hover:text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
                                     <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" />
                                 </svg>
@@ -176,7 +175,7 @@ export default function CheckoutPage() {
 
                             <button
                                 type="button"
-                                className={styles.onlineBtn}
+                                className="flex items-center justify-center gap-3 w-full py-4 px-6 bg-black text-white border-2 border-black rounded-xl font-bold text-base cursor-pointer transition-all duration-200 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                                 onClick={handleOnlinePayment}
                                 disabled={onlineLoading || !isFormValid}
                             >
@@ -189,8 +188,8 @@ export default function CheckoutPage() {
                         </div>
                     </form>
                 </div>
-            </div>
+            </main>
             <Footer />
-        </>
+        </div>
     );
 }

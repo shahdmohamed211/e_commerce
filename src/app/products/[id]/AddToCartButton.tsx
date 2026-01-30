@@ -3,7 +3,6 @@
 import { useAuth } from '@/context/AuthContext';
 import { addToCart } from '@/lib/api';
 import { useState } from 'react';
-import styles from './page.module.css';
 import { useRouter } from 'next/navigation';
 
 export default function AddToCartButton({ productId }: { productId: string }) {
@@ -36,9 +35,8 @@ export default function AddToCartButton({ productId }: { productId: string }) {
     return (
         <button
             onClick={handleAddToCart}
-            className={styles.addToCart}
+            className={`flex-1 py-4 px-8 rounded-xl font-bold text-base cursor-pointer transition-all duration-200 border-none sm:w-full ${added ? 'bg-green-500 text-white' : 'bg-black text-white hover:opacity-90'} disabled:opacity-50 disabled:cursor-not-allowed`}
             disabled={loading}
-            style={added ? { background: '#10B981' } : {}}
         >
             {loading ? 'Adding...' : added ? 'Added to Cart ✓' : 'Add To Cart'}
         </button>

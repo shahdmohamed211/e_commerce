@@ -4,7 +4,6 @@ import { useAuth } from '@/context/AuthContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { addToCart } from '@/lib/api';
 import { useState } from 'react';
-import styles from './ProductCard.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -69,14 +68,14 @@ export default function ProductCard({
     };
 
     return (
-        <Link href={`/products/${id}`} className={styles.card}>
-            <div className={styles.imageContainer}>
+        <Link href={`/products/${id}`} className="flex flex-col bg-white border border-default shadow-sm rounded-[14px] overflow-hidden h-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.4),0_0_40px_rgba(99,102,241,0.2),0_8px_16px_rgba(0,0,0,0.1)] hover:-translate-y-1 group">
+            <div className="relative w-full pt-[110%] bg-secondary">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={image} alt={title} className={styles.image} />
+                <img src={image} alt={title} className="absolute top-0 left-0 w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.05]" />
 
                 {/* Wishlist Button */}
                 <button
-                    className={`${styles.wishlistBtn} ${inWishlist ? styles.wishlistActive : ''}`}
+                    className={`absolute top-3 right-3 w-9 h-9 rounded-full bg-primary border border-subtle backdrop-blur-[4px] flex items-center justify-center cursor-pointer transition-all duration-200 z-10 shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:scale-110 ${inWishlist ? 'text-[#ef4444] hover:text-[#dc2626]' : 'text-pale-sky hover:text-[#ef4444]'}`}
                     onClick={handleWishlistToggle}
                     aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
                 >
@@ -86,35 +85,35 @@ export default function ProductCard({
                 </button>
             </div>
 
-            <div className={styles.content}>
+            <div className="p-4 flex flex-col gap-2 grow">
                 <div>
-                    <div className={styles.brand}>{brand}</div>
-                    <h3 className={styles.title}>{title}</h3>
-                    <div className={styles.category}>{category}</div>
+                    <div className="text-[12px] text-pale-sky uppercase mb-1">{brand}</div>
+                    <h3 className="font-bold text-[15.6px] leading-6 text-cod-gray line-clamp-2">{title}</h3>
+                    <div className="text-[12px] text-pale-sky">{category}</div>
                 </div>
 
-                <div className={styles.ratingContainer}>
-                    <div className={styles.stars}>
+                <div className="flex items-center gap-2 mt-1">
+                    <div className="flex text-supernova">
                         {[...Array(5)].map((_, i) => (
                             <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={i < Math.floor(rating) ? "currentColor" : "none"} stroke="currentColor" strokeWidth="0">
                                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
                             </svg>
                         ))}
                     </div>
-                    <span className={styles.reviewCount}>({reviews})</span>
+                    <span className="text-[14px] text-pale-sky">({reviews})</span>
                 </div>
 
-                <div className={styles.footer}>
-                    <div className={styles.price}>EGP {price.toLocaleString()}</div>
+                <div className="mt-auto pt-4 flex flex-col gap-3">
+                    <div className="font-semibold text-[17.4px] leading-7 text-cod-gray">EGP {price.toLocaleString()}</div>
                     <button
-                        className={styles.addToCartBtn}
+                        className="w-full bg-cod-gray-2 text-alabaster border-none rounded-lg p-[10px] font-medium text-[13.6px] leading-5 cursor-pointer flex items-center justify-center gap-2 transition-all duration-200 hover:bg-black hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
                         onClick={handleAdd}
                         disabled={loading}
                     >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" fill="white" />
                             <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z" fill="white" />
-                            <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.5583 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         {loading ? '...' : 'Add To Cart'}
                     </button>

@@ -18,25 +18,21 @@ export default async function ProductsPage() {
     ];
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div className="min-h-screen flex flex-col">
             <Navbar />
 
-            <main style={{ flex: 1, padding: '48px 0', background: 'var(--bg-secondary)' }}>
+            <main className="flex-1 py-12 bg-secondary">
                 <div className="container">
                     <Breadcrumb items={breadcrumbItems} />
 
-                    <div style={{ marginBottom: '32px' }}>
-                        <h1 className="h1" style={{ fontSize: '32px' }}>All Products</h1>
-                        <p className="body-md" style={{ color: 'var(--text-secondary)' }}>
+                    <div className="mb-8">
+                        <h1 className="text-[32px] font-bold">All Products</h1>
+                        <p className="text-pale-sky text-base">
                             Showing {products.length} results
                         </p>
                     </div>
 
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                        gap: '32px'
-                    }}>
+                    <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
                         {products.map((product: Product) => (
                             <ProductCard
                                 key={product._id}

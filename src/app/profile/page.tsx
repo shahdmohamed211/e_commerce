@@ -5,7 +5,6 @@ import { useAuth } from '@/context/AuthContext';
 import { getLoggedUserData } from '@/lib/api';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import styles from './page.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/context/ThemeContext';
@@ -28,71 +27,72 @@ export default function ProfilePage() {
         });
     }, [token, router]);
 
-    if (loading) return <div className="container">Loading...</div>;
+    if (loading) return <div className="max-w-container mx-auto px-[var(--container-padding)] py-12">Loading...</div>;
 
     return (
-        <>
+        <div className="min-h-screen flex flex-col">
             <Navbar />
-            <div className="container">
-                <div className={styles.profileContainer}>
-                    <h1 className={styles.title}>Account Settings</h1>
+            <main className="flex-1 max-w-container mx-auto px-[var(--container-padding)] py-12 w-full">
+                <div className="max-w-[800px] mx-auto">
+                    <h1 className="text-[32px] font-bold mb-10">Account Settings</h1>
 
-                    <div className={styles.section}>
-                        <h2>Personal Information</h2>
-                        <div className={styles.infoGrid}>
-                            <div className={styles.infoItem}>
-                                <label>Name</label>
-                                <div>{userData?.name}</div>
+                    <div className="bg-white border border-default rounded-2xl p-8 mb-8">
+                        <h2 className="text-xl font-bold mb-6 text-cod-gray pb-4 border-b border-subtle">Personal Information</h2>
+                        <div className="grid grid-cols-2 gap-8 md:grid-cols-1">
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-[13px] font-bold text-pale-sky uppercase tracking-wider">Name</label>
+                                <div className="text-[17px] font-medium text-cod-gray">{userData?.name}</div>
                             </div>
-                            <div className={styles.infoItem}>
-                                <label>Email</label>
-                                <div>{userData?.email}</div>
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-[13px] font-bold text-pale-sky uppercase tracking-wider">Email</label>
+                                <div className="text-[17px] font-medium text-cod-gray">{userData?.email}</div>
                             </div>
-                            <div className={styles.infoItem}>
-                                <label>Phone</label>
-                                <div>{userData?.phone || 'Not provided'}</div>
+                            <div className="flex flex-col gap-1.5">
+                                <label className="text-[13px] font-bold text-pale-sky uppercase tracking-wider">Phone</label>
+                                <div className="text-[17px] font-medium text-cod-gray">{userData?.phone || 'Not provided'}</div>
                             </div>
                         </div>
                     </div>
 
-                    <div className={styles.section}>
-                        <h2>Preferences</h2>
-                        <div className={styles.menu}>
-                            <div className={styles.menuItem} onClick={toggleTheme} style={{ cursor: 'pointer' }}>
-                                <span>Theme: {theme === 'light' ? 'Light Mode' : 'Dark Mode'}</span>
-                                <span className={styles.arrow} style={{
-                                    background: theme === 'dark' ? '#000' : '#eee',
-                                    padding: '4px 12px',
-                                    borderRadius: '20px',
-                                    fontSize: '12px'
-                                }}>
+                    <div className="bg-white border border-default rounded-2xl p-8 mb-8">
+                        <h2 className="text-xl font-bold mb-6 text-cod-gray pb-4 border-b border-subtle">Preferences</h2>
+                        <div className="flex flex-col gap-4">
+                            <div
+                                className="flex items-center justify-between p-4 bg-secondary rounded-xl cursor-pointer hover:bg-athens-gray transition-colors duration-200"
+                                onClick={toggleTheme}
+                            >
+                                <div className="flex flex-col">
+                                    <span className="text-[15px] font-bold text-cod-gray">Theme</span>
+                                    <span className="text-sm text-river-bed">{theme === 'light' ? 'Light Mode' : 'Dark Mode'} enabled</span>
+                                </div>
+                                <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${theme === 'dark' ? 'bg-black text-white' : 'bg-white border border-default text-black'}`}>
                                     Switch to {theme === 'light' ? 'Dark' : 'Light'}
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    <div className={styles.menu}>
-                        <Link href="/profile/addresses" className={styles.menuItem}>
-                            <span>Manage Addresses</span>
-                            <span className={styles.arrow}>→</span>
+                    <div className="flex flex-col gap-3">
+                        <Link href="/profile/addresses" className="flex items-center justify-between p-5 bg-white border border-default rounded-xl no-underline hover:border-cod-gray hover:shadow-sm transition-all duration-200 group">
+                            <span className="font-bold text-cod-gray">Manage Addresses</span>
+                            <span className="text-pale-sky group-hover:text-cod-gray group-hover:translate-x-1 transition-all duration-200">→</span>
                         </Link>
-                        <Link href="/profile/change-password" className={styles.menuItem}>
-                            <span>Change Password</span>
-                            <span className={styles.arrow}>→</span>
+                        <Link href="/profile/change-password" className="flex items-center justify-between p-5 bg-white border border-default rounded-xl no-underline hover:border-cod-gray hover:shadow-sm transition-all duration-200 group">
+                            <span className="font-bold text-cod-gray">Change Password</span>
+                            <span className="text-pale-sky group-hover:text-cod-gray group-hover:translate-x-1 transition-all duration-200">→</span>
                         </Link>
-                        <Link href="/allorders" className={styles.menuItem}>
-                            <span>Order History</span>
-                            <span className={styles.arrow}>→</span>
+                        <Link href="/allorders" className="flex items-center justify-between p-5 bg-white border border-default rounded-xl no-underline hover:border-cod-gray hover:shadow-sm transition-all duration-200 group">
+                            <span className="font-bold text-cod-gray">Order History</span>
+                            <span className="text-pale-sky group-hover:text-cod-gray group-hover:translate-x-1 transition-all duration-200">→</span>
                         </Link>
-                        <Link href="/wishlist" className={styles.menuItem}>
-                            <span>My Wishlist</span>
-                            <span className={styles.arrow}>→</span>
+                        <Link href="/wishlist" className="flex items-center justify-between p-5 bg-white border border-default rounded-xl no-underline hover:border-cod-gray hover:shadow-sm transition-all duration-200 group">
+                            <span className="font-bold text-cod-gray">My Wishlist</span>
+                            <span className="text-pale-sky group-hover:text-cod-gray group-hover:translate-x-1 transition-all duration-200">→</span>
                         </Link>
                     </div>
                 </div>
-            </div>
+            </main>
             <Footer />
-        </>
+        </div>
     );
 }
