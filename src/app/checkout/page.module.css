@@ -1,0 +1,140 @@
+.checkoutContainer {
+    max-width: 600px;
+    margin: 24px auto 48px;
+    padding: 32px;
+    background: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-default);
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--color-cod-gray);
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-cod-gray);
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input:focus {
+    border-color: var(--color-cod-gray);
+}
+
+.input::placeholder {
+    color: var(--color-pale-sky);
+}
+
+/* Payment Options */
+.paymentOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.paymentLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-cod-gray);
+    margin-bottom: 4px;
+}
+
+.cashBtn,
+.onlineBtn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.cashBtn {
+    background: var(--color-cod-gray-2);
+    color: white;
+}
+
+.cashBtn:hover:not(:disabled) {
+    background: var(--color-jet);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.onlineBtn {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+}
+
+.onlineBtn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.cashBtn:disabled,
+.onlineBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Deprecated - keeping for compatibility */
+.submitBtn {
+    width: 100%;
+    padding: 14px;
+    background: var(--color-cod-gray-2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.submitBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+    .checkoutContainer {
+        margin: 16px;
+        padding: 24px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}

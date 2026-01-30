@@ -1,0 +1,18 @@
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 48px var(--container-padding);
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+}
