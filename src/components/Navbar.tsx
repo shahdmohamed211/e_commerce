@@ -150,7 +150,7 @@ export default function Navbar() {
                                             </div>
 
                                             <div className="px-4 flex flex-col gap-2">
-                                                <Link href="/login" onClick={() => setIsProfileOpen(false)} className="flex items-center justify-center py-3 bg-primary text-inverse dark:bg-white dark:text-black rounded-xl font-bold text-[14px] no-underline transition-all hover:scale-[1.02] shadow-sm">
+                                                <Link href="/login" onClick={() => setIsProfileOpen(false)} className="flex items-center justify-center py-3 bg-black text-white dark:bg-white dark:text-black rounded-xl font-bold text-[14px] no-underline transition-all hover:scale-[1.02] shadow-sm">
                                                     Login
                                                 </Link>
                                                 <Link href="/register" onClick={() => setIsProfileOpen(false)} className="flex items-center justify-center py-3 bg-secondary text-primary border border-subtle rounded-xl font-bold text-[14px] no-underline transition-all hover:bg-athens-gray">
